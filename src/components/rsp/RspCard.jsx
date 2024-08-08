@@ -1,0 +1,21 @@
+import React from 'react';
+
+function RspCard(props) {
+  return (
+    <div className="col-md-4 d-flex justify-content-center">
+      <div className="card" style={{width: '18rem'}}>
+        <img className="card-img-top" src="https://taegon.kim/wp-content/uploads/2018/05/image-5.png" alt="..." />
+        <div className="card-body text-center">
+          <h5 className="card-title">{props.player.username}</h5>
+          {
+            props.player.arrRsp.map(rsp => (
+            <button className="btn btn-primary m-2" key="{rsp}" onClick={props.onClick}>{rsp}</button>
+            ))
+          }
+        </div>
+      </div>
+    </div>  
+   );
+}
+
+export default RspCard;
