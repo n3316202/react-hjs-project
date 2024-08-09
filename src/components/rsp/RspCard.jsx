@@ -4,7 +4,9 @@ function RspCard(props) {
   return (
     <div className="col-md-4 d-flex justify-content-center">
       <div className="card" style={{width: '18rem'}}>
-        <img className="card-img-top" src="https://taegon.kim/wp-content/uploads/2018/05/image-5.png" alt="..." />
+
+        <img className="card-img-top" src={props.player.img} alt="..." />
+
         <div className="card-body text-center">
           <h5 className="card-title">{props.player.username}</h5>
           {
