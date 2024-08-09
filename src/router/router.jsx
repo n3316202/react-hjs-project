@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
 import RspPage from "../pages/RspPage";
+import LottoPage from "../pages/LottoPage";
 
 
 const routes = [
@@ -17,18 +18,18 @@ const routes = [
             },
         ]
     },
-    // {
-    //     path: "/lotto",
-    //     element: <App />,
-    //     loader: () => "로또",
-    //     children: [
-    //         {
-    //           path: "/lotto",
-    //           loader: () => "로또",
-    //           element: <LottoView/>,
-    //         },
-    //     ]
-    // }
+    {
+        path: "/lotto",
+        element: <App />,
+        loader: () => "로또",
+        children: [
+            {
+              path: "/lotto",
+              loader: () => "로또",
+              element: <LottoPage/>,
+            },
+        ]
+    }
 ]
 
 const router = createBrowserRouter(routes);
