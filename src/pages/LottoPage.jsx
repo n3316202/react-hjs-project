@@ -1,29 +1,34 @@
 
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import LottoBall from './../components/lotto/LottoBall';
 
 
 function LottoPage() {
 
+  const setNumbers = () => {
+    const lottoSet = new Set();
+
+    while(lottoSet.size < 6){
+        let num = Math.floor(Math.random() * 45) +1 ;
+        lottoSet.add(num)
+    }
+    console.log(lottoSet)
+    return Array.from(lottoSet);;
+
+  }
+
     const [nums,setNums] = useState(setNumbers)
 
-    const setNumbers = () => {
-        const lottoNums = new Set();
-
-        while(lottoNums.size < 6){
-            let num = Math.floor(Math.random() * 45) +1 ;
-            lottoNums.add(num)
-        }
-        console.log(lottoNums)
-        return lottoNums;
-
-    }
-
+    useEffect(()=>{
+      console.log('화면 갱신')
+    })
+    
     return (
         <div className="container">
         <div className="row mt-sm-5">
           {
-            nums && nums.map( num => (
-              <LottoBall num = {num} ></LottoBall> 
+            nums && nums.map( lottoNum => (
+              <LottoBall lottoNum = {lottoNum} ></LottoBall> 
             ))
           }
         </div>
