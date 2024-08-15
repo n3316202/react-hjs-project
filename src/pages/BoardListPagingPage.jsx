@@ -44,21 +44,34 @@ function BoardListPagingPage() {
             console.log(e);
           });
       };
+      //<a class="page-link" href="/rboard/list2?pageNum=5&amount=10">5</a>
 
       const deleteBoard = (e) => {
         const { name, value } = e.target;
     
         console.log(name);
         console.log(value);
+        
     
         boardService.remove(value)
           .then((response) => {
-            //console.log(response.data);
-            //console.log(value,boards.length);
-            //삭제 하나씩 지우기
-            //setBoards(boards.filter((board) => board.bid !== parseInt(value)));
-            //삭제후 다시 서버에서 받아옴
-            retrieveBoards();
+
+              const path = 'rboard/list2';
+              const search = '?pageNum=' + paging.cri.pageNum + '&' + 'amount=' + paging.cri.amount;
+
+              boardService.getPagingList(path, search)
+              .then((response) => {
+                setBoards(response.data.boards);
+                setPaging(response.data.page);
+        
+                console.log(response.data.boards);
+                console.log(response.data.page);
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+
+
           })
           .catch((e) => {
             console.log(e);
@@ -132,74 +145,8 @@ function BoardListPagingPage() {
                     </tbody>
                   </table>
                 </div>
-
-                <PaginationB5 paging={paging} onClickPaging={onClickPaging}></PaginationB5>
-                
-                {/* {paging.pre === true && (
-                  <Link
-                    to={
-                      '/rboard/list2' +
-                      '?pageNum=' +
-                      (paging.startPage - 1) +
-                      '&' +
-                      'amount=' +
-                      paging.cri.amount
-                    }
-                    onClick={onClickPaging}
-                  >
-                    {' '}
-                    이전{' '}
-                  </Link>
-                )} */}
-    
-                {/* {(() => {
-                  const row = [];
-                  for (let i = paging.startPage; i < paging.endPage; i++) {
-                    console.log(
-                      '/list2/' +
-                        '?pageNum=' +
-                        i +
-                        '&' +
-                        'amount=' +
-                        paging.cri.amount,
-                    );
-                    row.push(
-                      <Link
-                        to={
-                          '/rboard/list2' +
-                          '?pageNum=' +
-                          i +
-                          '&' +
-                          'amount=' +
-                          paging.cri.amount
-                        }
-                        onClick={onClickPaging}
-                      >
-                        {' '}
-                        {i}
-                      </Link>,
-                    );
-                  }
-                  return row;
-                })()} */}
-    
-                {/* {paging.next === true && paging.endPage > 0 && (
-                  <Link
-                    to={
-                      '/rboard/list2' +
-                      '?pageNum=' +
-                      (paging.endPage + 1) +
-                      '&' +
-                      'amount=' +
-                      paging.cri.amount
-                    }
-                    onClick={onClickPaging}
-                  >
-                    {' '}
-                    다음{' '}
-                  </Link>
-                )} */}
-    
+                {/* 페이징           */}
+                <PaginationB5 paging={paging} onClickPaging={onClickPaging}></PaginationB5>       
                 <hr />
                 <Link to="/write">
                   <button type="button" className="btn btn-primary">
