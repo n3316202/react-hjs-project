@@ -148,7 +148,7 @@ function BoardListPagingPage() {
                 {/* 페이징           */}
                 <PaginationB5 paging={paging} onClickPaging={onClickPaging}></PaginationB5>       
                 <hr />
-                <Link to="/write">
+                <Link to="/boards/write">
                   <button type="button" className="btn btn-primary">
                     글쓰기
                   </button>
