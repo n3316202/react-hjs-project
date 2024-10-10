@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import boardService from '../services/BoardService';
 import PaginationB5 from '../components/board/PaginationB5';
 
@@ -37,7 +37,7 @@ function BoardWritePage() {
   };
 
   return submitted ? (
-    <Navigate to={{ pathname: '/' }} />
+    <Navigate to={{ pathname: '/boards' }} />
   ) : (
     <div>
       <div className="container mt-3">
@@ -76,6 +76,7 @@ function BoardWritePage() {
                 </div>
                 <div className="form-group mt-3 mb-3">
                   <label> Content </label>
+
                   <textarea
                     placeholder="내용을 적으시오"
                     name="bcontent"
