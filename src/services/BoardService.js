@@ -5,7 +5,7 @@ const getAll = () => {
 };
 
 const get = (id) => {
-  return http.get(`/rboard/${id}`);
+  return http.get(`/boards/${id}`);
 };
 
 const write = (data) => {
